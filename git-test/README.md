@@ -42,3 +42,9 @@ git checkout f5e5a92 templates/test.html # reverst back to commit version of the
 git reset HEAD templates/test.html # to unstage the changes of the specific commit of the file
 git checkout -- templates/test.html # restorest the file to the last commit
 ```
+
+- To clone a repo use
+
+```bash
+git clone https://rabira-hierpa@github.com/coursear-learning;
+```
