@@ -18,7 +18,7 @@ git commit -m 'first commit' # commit the changes
 git log --online # see a breif of commits
 ```
 
-- Create a directory and then add it to git 
+- Create a directory and then add it to git
 
 ```bash
 git add templates
