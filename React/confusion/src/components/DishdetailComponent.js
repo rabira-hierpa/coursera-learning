@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
+import Moment from 'moment';
 export default class DishdetailComponent extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			selectedDish: null,
-		};
-		this.props = props.dish;
+	componentDidMount() {
+		console.log(this.props.dish);
 	}
-
 	renderDish(dish = this.props.dish) {
 		if (dish) {
 			return (
@@ -27,11 +23,27 @@ export default class DishdetailComponent extends Component {
 		}
 	}
 
-	renderComments(comments) {
-		if (comments) {
-			<div>
-				<h4>Comments Sections</h4>
-			</div>;
+	renderComments(comments = this.props.dish.comments) {
+		if (comments.length) {
+			return (
+				<div>
+					{comments.map((comment) => {
+						return (
+							<ul class='list-group list-group-flush'>
+								<li class='list-group-item'>
+									{comment.comment}
+									<div>
+										{'-- ' +
+											comment.author +
+											' , ' +
+											Moment(comment.date).format('MMM DD, YYYY')}
+									</div>
+								</li>
+							</ul>
+						);
+					})}
+				</div>
+			);
 		} else {
 			return <div></div>;
 		}
@@ -42,7 +54,10 @@ export default class DishdetailComponent extends Component {
 			<div className='row'>
 				<div className='col-lg-5 col-sm-12 m-1'>{this.renderDish()}</div>
 				<div className='col-lg-5 col-md-5 col-sm-12 m-1'>
-					<h2>Comments sections</h2>
+					<div>
+						<h4>Comments </h4>
+						{this.renderComments()}
+					</div>
 				</div>
 			</div>
 		);
