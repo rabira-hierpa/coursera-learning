@@ -27,7 +27,7 @@ export default class DishdetailComponent extends Component {
 					{comments.map((comment) => {
 						return (
 							<ul class='list-group list-group-flush'>
-								<li class='list-group-item'>
+								<li key={comment.id} class='list-group-item'>
 									{comment.comment}
 									<div>
 										{'-- ' +
