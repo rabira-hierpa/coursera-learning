@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
 import Moment from 'moment';
 export default class DishdetailComponent extends Component {
-	componentDidMount() {
-		console.log(this.props.dish);
-	}
 	renderDish(dish = this.props.dish) {
 		if (dish) {
 			return (
