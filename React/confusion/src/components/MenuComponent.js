@@ -7,12 +7,15 @@ import {
 	CardText,
 	CardTitle,
 } from 'reactstrap';
-import DishdetailComponent from './DishdetailComponent';
+
 export default class MenuComponent extends Component {
-	constructor(props) {
-		super(props);
+	componentDidMount() {
+		console.log('Menu componentDidMount() invoked');
 	}
 
+	componentDidUpdate() {
+		console.log('Menu componentDidUpdate() invoked');
+	}
 	renderDish(dish) {
 		if (dish != null) {
 			return (
@@ -30,6 +33,7 @@ export default class MenuComponent extends Component {
 	}
 
 	render() {
+		console.log('Menu Componet render() invoked');
 		const menu = this.props.dishes.map((dish) => {
 			return (
 				<div key={dish.id} className='col-12 col-md-5 m-1'>
