@@ -60,7 +60,8 @@ class Main extends Component {
 					/>
 					<Route path='/menu/:dishId' component={DishWithId} />
 					<Route
-						exact='/aboutus'
+						exact
+						path='/about'
 						component={() => <AboutUs leaders={this.state.leaders} />}
 					/>
 					<Redirect to='/home' />
