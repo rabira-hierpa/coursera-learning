@@ -37,7 +37,7 @@ function RenderDish({ dish }) {
 	}
 }
 
-const RenderComments = ({ comments }) => {
+const RenderComments = ({ comments, addComment, dishId }) => {
 	if (comments.length) {
 		return (
 			<div>
@@ -59,7 +59,7 @@ const RenderComments = ({ comments }) => {
 						</ul>
 					);
 				})}
-				<CommentForm />
+				<CommentForm dishId={dishId} addComment={addComment} />
 			</div>
 		);
 	} else {
@@ -92,7 +92,11 @@ const DishDetail = (props) => {
 					</div>
 					<div className='col-lg-5 col-md-5 col-sm-12 m-1'>
 						<h4>Comments </h4>
-						<RenderComments comments={props.comments} />
+						<RenderComments
+							comments={props.comments}
+							addComment={props.addComment}
+							dishId={props.dish.id}
+						/>
 					</div>
 				</div>
 			</div>
@@ -117,8 +121,12 @@ class CommentForm extends React.Component {
 	}
 
 	handleSubmit = (values) => {
-		console.log('Current State is: ' + JSON.stringify(values));
-		alert('Current State is: ' + JSON.stringify(values));
+		this.props.addComment(
+			this.props.dishId,
+			values.rating,
+			values.author,
+			values.comment
+		);
 		this.toggleModal();
 	};
 	render() {
@@ -185,9 +193,9 @@ class CommentForm extends React.Component {
 								</Label>
 								<Col md={12}>
 									<Control.textarea
-										model='.message'
-										id='message'
-										name='message'
+										model='.comment'
+										id='comment'
+										name='comment'
 										rows='6'
 										className='form-control'
 									/>
