@@ -8,6 +8,10 @@ import DishDetail from './DishdetailComponent';
 import AboutUs from './AboutusComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { addComment } from '../redux/ActionCreateros';
+
+// - When retriving state from the store
+// - use mapStateToProps
 
 const mapStateToProps = (state) => {
 	return {
@@ -17,6 +21,15 @@ const mapStateToProps = (state) => {
 		leaders: state.leaders,
 	};
 };
+
+// - When adding an action to a dispath
+// - use mapDispatchToProps
+
+const mapDispatchToProps = (dispatch) => ({
+	addComment: (dishId, raiting, author, comment) =>
+		dispatch(addComment(dishId, raiting, author, comment)),
+});
+
 class Main extends Component {
 	render() {
 		const HomePage = () => {
@@ -40,6 +53,7 @@ class Main extends Component {
 					comments={this.props.comments.filter(
 						(comment) => comment.dishId === parseInt(match.params.dishId, 10)
 					)}
+					addComment={this.props.addComment}
 				/>
 			);
 		};
@@ -68,4 +82,6 @@ class Main extends Component {
 	}
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+// ! Make sure to add both mapStateToProps and mapDispatchToProps
+// ! to the connect function
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
