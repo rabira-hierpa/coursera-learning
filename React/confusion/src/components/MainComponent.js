@@ -9,7 +9,7 @@ import AboutUs from './AboutusComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addComment, fetchDishes } from '../redux/ActionCreateros';
-
+import { actions } from 'react-redux-form';
 // - When retriving state from the store
 // - use mapStateToProps
 
@@ -30,6 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(addComment(dishId, raiting, author, comment)),
 	fetchDishes: () => {
 		dispatch(fetchDishes());
+	},
+	resetFeedbackForm: () => {
+		dispatch(actions.reset('feedback'));
 	},
 });
 
@@ -73,7 +76,13 @@ class Main extends Component {
 				<Header />
 				<Switch>
 					<Route path='/home' component={HomePage} />
-					<Route exact path='/contactus' component={Contact} />
+					<Route
+						exact
+						path='/contactus'
+						component={() => (
+							<Contact resetFeedbackForm={this.props.resetFeedbackForm} />
+						)}
+					/>
 					<Route
 						exact
 						path='/menu'
