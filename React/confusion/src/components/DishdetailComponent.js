@@ -38,7 +38,7 @@ function RenderDish({ dish }) {
 	}
 }
 
-const RenderComments = ({ comments, addComment, dishId }) => {
+const RenderComments = ({ comments, postComment, dishId }) => {
 	if (comments.length) {
 		return (
 			<div>
@@ -60,7 +60,7 @@ const RenderComments = ({ comments, addComment, dishId }) => {
 						</ul>
 					);
 				})}
-				<CommentForm dishId={dishId} addComment={addComment} />
+				<CommentForm dishId={dishId} postComment={postComment} />
 			</div>
 		);
 	} else {
@@ -112,7 +112,7 @@ const DishDetail = (props) => {
 							<h4>Comments </h4>
 							<RenderComments
 								comments={props.comments}
-								addComment={props.addComment}
+								postComment={props.postComment}
 								dishId={props.dish.id}
 							/>
 						</div>
@@ -139,7 +139,7 @@ class CommentForm extends React.Component {
 	}
 
 	handleSubmit = (values) => {
-		this.props.addComment(
+		this.props.postComment(
 			this.props.dishId,
 			values.rating,
 			values.author,
@@ -151,7 +151,7 @@ class CommentForm extends React.Component {
 		return (
 			<React.Fragment>
 				<Button outline className='mt-5' onClick={this.toggleModal}>
-					<i class='fa fa-pencil fa-lg mr-2'></i>Submit Comment
+					<i className='fa fa-pencil fa-lg mr-2'></i>Submit Comment
 				</Button>
 				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 					<ModalHeader toggle={this.state.toggleModal}>

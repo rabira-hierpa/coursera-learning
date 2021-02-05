@@ -9,7 +9,7 @@ import AboutUs from './AboutusComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-	addComment,
+	postComment,
 	fetchDishes,
 	fetchComments,
 	fetchPromos,
@@ -31,17 +31,15 @@ const mapStateToProps = (state) => {
 // - use mapDispatchToProps
 
 const mapDispatchToProps = (dispatch) => ({
-	addComment: (dishId, raiting, author, comment) =>
-		dispatch(addComment(dishId, raiting, author, comment)),
+	postComment: (dishId, raiting, author, comment) =>
+		dispatch(postComment(dishId, raiting, author, comment)),
 	fetchDishes: () => {
 		dispatch(fetchDishes());
 	},
 	resetFeedbackForm: () => {
 		dispatch(actions.reset('feedback'));
 	},
-	fetchComments: () => {
-		dispatch(fetchComments());
-	},
+	fetchComments: () => dispatch(fetchComments()),
 	fetchPromos: () => {
 		dispatch(fetchPromos());
 	},
@@ -74,6 +72,7 @@ class Main extends Component {
 		};
 
 		const DishWithId = ({ match }) => {
+			console.log(this.props.comments);
 			return (
 				<DishDetail
 					dish={
@@ -83,11 +82,11 @@ class Main extends Component {
 					}
 					isLoading={this.props.dishes.isLoading}
 					errMess={this.props.dishes.errmess}
-					comments={this.props.comments.filter(
+					comments={this.props.comments.comments.filter(
 						(comment) => comment.dishId === parseInt(match.params.dishId, 10)
 					)}
 					commentsErrMess={this.props.comments.errMess}
-					addComment={this.props.addComment}
+					postComment={this.props.postComment}
 				/>
 			);
 		};
