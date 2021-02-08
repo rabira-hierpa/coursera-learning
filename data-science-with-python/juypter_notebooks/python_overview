@@ -1,0 +1,194 @@
+{
+ "metadata": {
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5-final"
+  },
+  "orig_nbformat": 2,
+  "kernelspec": {
+   "name": "python3",
+   "display_name": "Python 3",
+   "language": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2,
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "Chris bought 4 item(s) at a price of 3.24 each for a total of 3.24\n"
+     ]
+    }
+   ],
+   "source": [
+    "sales_record ={'price': 3.24,'num_items': 4, 'person': 'Chris'}\n",
+    "sales_statement = '{} bought {} item(s) at a price of {} each for a total of {}'\n",
+    "\n",
+    "print(sales_statement.format(sales_record['person'],sales_record['num_items'], sales_record['price'],sales_record['price'],sales_record['num_items']*sales_record['price']))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "[{'': '1',\n",
+       "  'manufacturer': 'audi',\n",
+       "  'model': 'a4',\n",
+       "  'displ': '1.8',\n",
+       "  'year': '1999',\n",
+       "  'cyl': '4',\n",
+       "  'trans': 'auto(l5)',\n",
+       "  'drv': 'f',\n",
+       "  'cty': '18',\n",
+       "  'hwy': '29',\n",
+       "  'fl': 'p',\n",
+       "  'class': 'compact'},\n",
+       " {'': '2',\n",
+       "  'manufacturer': 'audi',\n",
+       "  'model': 'a4',\n",
+       "  'displ': '1.8',\n",
+       "  'year': '1999',\n",
+       "  'cyl': '4',\n",
+       "  'trans': 'manual(m5)',\n",
+       "  'drv': 'f',\n",
+       "  'cty': '21',\n",
+       "  'hwy': '29',\n",
+       "  'fl': 'p',\n",
+       "  'class': 'compact'},\n",
+       " {'': '3',\n",
+       "  'manufacturer': 'audi',\n",
+       "  'model': 'a4',\n",
+       "  'displ': '2',\n",
+       "  'year': '2008',\n",
+       "  'cyl': '4',\n",
+       "  'trans': 'manual(m6)',\n",
+       "  'drv': 'f',\n",
+       "  'cty': '20',\n",
+       "  'hwy': '31',\n",
+       "  'fl': 'p',\n",
+       "  'class': 'compact'}]"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 6
+    }
+   ],
+   "source": [
+    "# Data Files and Summary Stat \n",
+    "\n",
+    "import csv \n",
+    "%precision 2\n",
+    "\n",
+    "with open('../datasets/mpg.csv') as csvfile:\n",
+    "    mpg = list(csv.DictReader(csvfile))\n",
+    "\n",
+    "mpg[:3]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "234"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 8
+    }
+   ],
+   "source": [
+    "len(mpg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "dict_keys(['', 'manufacturer', 'model', 'displ', 'year', 'cyl', 'trans', 'drv', 'cty', 'hwy', 'fl', 'class'])"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 9
+    }
+   ],
+   "source": [
+    "mpg[0].keys()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "16.86"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 14
+    }
+   ],
+   "source": [
+    "sum(float(d['cty']) for d in mpg)/len(mpg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "error",
+     "ename": "SyntaxError",
+     "evalue": "invalid syntax (<ipython-input-16-4993019b3241>, line 1)",
+     "traceback": [
+      "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-16-4993019b3241>\"\u001b[0;36m, line \u001b[0;32m1\u001b[0m\n\u001b[0;31m    sum(float(d['hwy'])) for d  in mpg)\u001b[0m\n\u001b[0m                         ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
+     ]
+    }
+   ],
+   "source": [
+    "sum(float(d['hwy']) for d  in mpg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ]
+}
