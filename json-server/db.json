@@ -224,6 +224,22 @@
       "comment": "Smith\n",
       "date": "2021-02-05T13:41:36.937Z",
       "id": 22
+    },
+    {
+      "dishId": 1,
+      "rating": "3",
+      "author": "Raul Fati",
+      "comment": "Amazing taste !!!",
+      "date": "2021-02-05T13:55:49.826Z",
+      "id": 23
+    },
+    {
+      "dishId": 2,
+      "rating": "4",
+      "author": "Muktar Kedir",
+      "comment": "Donuttttttttttsssssssssssss!!!!!!!!!!!!",
+      "date": "2021-02-05T13:56:40.339Z",
+      "id": 24
     }
   ],
   "promotions": [

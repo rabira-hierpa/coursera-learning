@@ -167,20 +167,151 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
+   "execution_count": 18,
    "metadata": {},
    "outputs": [
     {
-     "output_type": "error",
-     "ename": "SyntaxError",
-     "evalue": "invalid syntax (<ipython-input-16-4993019b3241>, line 1)",
-     "traceback": [
-      "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-16-4993019b3241>\"\u001b[0;36m, line \u001b[0;32m1\u001b[0m\n\u001b[0;31m    sum(float(d['hwy'])) for d  in mpg)\u001b[0m\n\u001b[0m                         ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
-     ]
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "5485.00"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 18
     }
    ],
    "source": [
-    "sum(float(d['hwy']) for d  in mpg)"
+    "sum(float(d['hwy']) for d  in mpg)  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "23.44"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 20
+    }
+   ],
+   "source": [
+    "sum(float(d['hwy']) for d  in mpg) / len(mpg)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "{'4', '5', '6', '8'}"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 21
+    }
+   ],
+   "source": [
+    "cylinders = set(d['cyl'] for d in mpg)\n",
+    "cylinders"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "[('4', 21.01), ('5', 20.50), ('6', 16.22), ('8', 12.57)]"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 25
+    }
+   ],
+   "source": [
+    "ctympgbycyl = []\n",
+    "for c in cylinders:\n",
+    "    summpg = 0\n",
+    "    cytpecount = 0\n",
+    "    for d in mpg:\n",
+    "        if d['cyl'] == c:\n",
+    "            summpg += float(d['cty'])\n",
+    "            cytpecount += 1\n",
+    "    ctympgbycyl.append((c,summpg/cytpecount))\n",
+    "ctympgbycyl.sort(key=lambda x: x[0])\n",
+    "ctympgbycyl"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "{'2seater', 'compact', 'midsize', 'minivan', 'pickup', 'subcompact', 'suv'}"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 28
+    }
+   ],
+   "source": [
+    "vehicleslass = set(d['class'] for d in mpg)\n",
+    "vehicleslass"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "[('pickup', 16.88),\n",
+       " ('suv', 18.13),\n",
+       " ('minivan', 22.36),\n",
+       " ('2seater', 24.80),\n",
+       " ('midsize', 27.29),\n",
+       " ('subcompact', 28.14),\n",
+       " ('compact', 28.30)]"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 33
+    }
+   ],
+   "source": [
+    "hwympbbyclass = []\n",
+    "for t in vehicleslass:\n",
+    "    summpg = 0\n",
+    "    vclasscount = 0\n",
+    "    for d in mpg:\n",
+    "        if d['class'] == t:\n",
+    "            summpg += float(d['hwy'])\n",
+    "            vclasscount += 1 # increment the count\n",
+    "    hwympbbyclass.append((t,summpg/vclasscount))\n",
+    "\n",
+    "hwympbbyclass.sort(key=lambda x: x[1])\n",
+    "hwympbbyclass"
    ]
   },
   {
