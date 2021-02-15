@@ -200,3 +200,57 @@ export const addLeaders = (leaders) => ({
 	type: ActionTypes.ADD_LEADERS,
 	payload: leaders,
 });
+
+// - make sure you include "dispatch" whenever you create an action creator
+export const postFeedback = (
+	firstName,
+	lastName,
+	contactTel,
+	email,
+	agree,
+	contactType,
+	message
+) => (dispatch) => {
+	const feedback = {
+		firsname: firstName,
+		lastname: lastName,
+		telnum: contactTel,
+		email: email,
+		agree,
+		contactType,
+		message: message,
+	};
+
+	return fetch(baseUrl + 'feedback', {
+		method: 'POST',
+		body: JSON.stringify(feedback),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		credentials: 'same-origin',
+	})
+		.then(
+			(response) => {
+				if (response.ok) {
+					return response;
+				} else {
+					var error = new Error(
+						'Error ' + response.status + ': ' + response.statusText
+					);
+					error.response = response;
+					throw error;
+				}
+			},
+			(error) => {
+				throw error;
+			}
+		)
+		.then((response) => response.json())
+		.then((response) =>
+			alert('Thank you for your feedback! ' + JSON.stringify(response))
+		)
+		.catch((error) => {
+			console.log('post feedback', error.message);
+			alert('Your feedback could not be posted\nError: ' + error.message);
+		});
+};

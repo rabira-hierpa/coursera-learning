@@ -20,12 +20,18 @@ const validEmail = (val) =>
 class Contact extends Component {
 	constructor(props) {
 		super(props);
-
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleSubmit(values) {
 		console.log('Current State is: ' + JSON.stringify(values));
+		this.props.postFeedback(
+			values.firstname,
+			values.lastname,
+			values.telnum,
+			values.email,
+			values.messages
+		);
 		alert('Current State is: ' + JSON.stringify(values));
 		this.props.resetFeedbackForm();
 	}

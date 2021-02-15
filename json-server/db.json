@@ -240,6 +240,13 @@
       "comment": "Donuttttttttttsssssssssssss!!!!!!!!!!!!",
       "date": "2021-02-05T13:56:40.339Z",
       "id": 24
+    },
+    {
+      "dishId": 2,
+      "author": "Jason",
+      "comment": "Unbelievable test",
+      "date": "2021-02-15T11:40:19.989Z",
+      "id": 25
     }
   ],
   "promotions": [
@@ -302,6 +309,27 @@
       "message": "afadsfds",
       "date": "2017-12-04T09:41:49.890Z",
       "id": 1
+    },
+    {
+      "firsname": "Json",
+      "lastname": "Smith",
+      "telnum": "13423523462",
+      "email": "json@mail.com",
+      "id": 2
+    },
+    {
+      "firsname": "Jason",
+      "lastname": "Smith",
+      "telnum": "1342352346234",
+      "email": "json@mail.com",
+      "id": 3
+    },
+    {
+      "firsname": "Rax",
+      "lastname": "Player",
+      "telnum": "23514146",
+      "email": "rax@grr.la",
+      "id": 4
     }
   ]
 }
